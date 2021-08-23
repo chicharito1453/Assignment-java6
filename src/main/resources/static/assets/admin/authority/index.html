@@ -1,0 +1,52 @@
+<div align="center">
+<div ng-show="!isUnauthorized">
+<div class="gandalf">
+  <div class="fireball"></div>
+  <div class="skirt"></div>
+  <div class="sleeves"></div>
+  <div class="shoulders">
+    <div class="hand left"></div>
+    <div class="hand right"></div>
+  </div>
+  <div class="head">
+    <div class="hair"></div>
+    <div class="beard"></div>
+  </div>
+</div>
+<div class="message">
+<h1>Không có quyền truy cập</h1>
+<p>Bạn không có quyền Quản trị viên.<br/>Hãy đăng nhâp bằng tài khoản có quyền Quản trị viên để phân quyền!</p>
+</div>
+</div>
+	<!--  PHÂN QUYỀN -->
+	<ul ng-show="isUnauthorized" class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item" role="presentation"><a
+			class="nav-link active" id="home-tab" data-bs-toggle="tab"
+			href="#home" role="tab" aria-controls="home" aria-selected="true">PHÂN
+				QUYỀN</a></li>
+	</ul>
+	<div ng-show="isUnauthorized" class="tab-content" id="myTabContent">
+		<!-- TAB CHỈNH SỬA -->
+		<div class="tab-pane fade show active" id="home" role="tabpanel"
+			aria-labelledby="home-tab">
+			<table class="table">
+				<thead>
+					<tr>
+						<td></td>
+						<td></td>
+						<td ng-repeat="role in roles track by role.id">{{role.name}}</td>
+					</tr>
+				</thead>
+				<tbody id="tblCategory">
+					<tr ng-repeat="acc in admins track by acc.username">
+						<td>{{acc.username}}</td>
+						<td>{{acc.fullname}}</td>
+						<td ng-repeat="role in roles track by role.id">
+							<input ng-checked="authority_of(acc, role)" ng-click="authority_changed(acc, role)" type="checkbox">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

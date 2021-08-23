@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+	<div align="center" th:if="${items == null}">
+			<div class="number">404</div>
+			<div class="text"><span>Ooops...</span><br>page not found</div>
+			<a class="me" href="https://codepen.io/uzcho_/pens/popular/?grid_type=list" target="_blank"></a><br><br><br>
+		</div>
+	<div th:if="${items != null}" class="content-area">
+	    <div class="container">
+	        <div class="cart-page">
+	            <h2 align="center">Chi tiết đơn hàng</h2>
+	            <div th:replace="/notify/Alert.html" class="notify"></div>
+	            <table class="table">
+	                    <thead>
+	                        <tr>
+	                            <th width="50%">Sản phẩm</th>
+	                            <th width="20%">Số lượng</th>
+	                            <th width="20%">Giá</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr th:each="item : ${items}">
+		                       <td>
+			                      <img th:src="${item.product.image == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.product.image }" width="50" alt="" class="img img-thumbnail pull-left">
+			                      <span class="pull-left cart-product-option">
+			                      <strong>[[${item.product.name}]]</strong><br />
+			                      </span>
+			                      <div class="clearfix"></div>
+		                      </td>
+		                      <td>[[${item.quantity}]]</td>
+		                      <td>[[${#numbers.formatDecimal(item.quantity*item.price,0,'COMMA',0,'POINT')}]] đ</td>
+		                    </tr>
+	                        <tr>
+	                            <td></td>
+	                            <td colspan="1"><strong>Tổng tiền:</strong></td>
+	                            <td>
+	                                <p><span class="total_product_sum">[[${#numbers.formatDecimal(totalPrice,0,'COMMA',0,'POINT')}]] đ</span></p>
+	                            </td>
+	                            <div class="clearfix"></div>
+	                        </tr>                
+	                        <tr>
+	                            <td></td>
+	                            <td>
+	                                <a th:href="@{/order}" class="btn btn-primary btn-lg pull-right margin-right-20">
+	                                    <i class="fa fa-backward"></i> Quay lại</a>
+	                            </td>
+	                        </tr>
+	                        </tbody>
+	                    </table>
+	            </div> <!--End Cart page-->
+	        </div> <!-- End Container inside Content Area -->
+    </div> <!-- End content Area class -->
+	</main>
+</body>
+</html>

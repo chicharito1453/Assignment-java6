@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TPD Shop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta http-equiv="Content-Language" content="en-US" />
+    <meta name="description" content="Dynamic responsive Ecommerce free web template" />
+    <meta name="keywords" content="Ecommerce template, Ecommerce free responsive template, free template" />
+    <meta name="author" content="Maniruzzaman Akash">
+
+    <!-- CSS links -->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}" />
+
+    
+    <!-- Animate.css -->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/animate.css}" />
+
+    <!-- Owl Carousel CSS-->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" />
+    <link type="text/css" rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}" />
+
+	<!-- Single Page product show with zoom -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/flexslider.css}">
+
+    <!-- Mega navigation bar -->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/webslidemenu.css}" />
+
+    <!-- Main css link -->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}" />
+    <link rel="icon" th:href="@{/images/logo.png}" />
+    
+    <!-- Scripts -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    
+    <!--AngularJS-->
+	<script th:src="@{https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js}"></script>
+    
+</head>
+<body ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl" id="wxz">
+<!-- NHÚNG CMT FB -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" th:src="@{https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0&appId=430640594860380&autoLogAppEvents=1}" nonce="bC2IwWor"></script>
+
+	<div class="header" th:replace="/layout/HeaderUser.html"></div>
+	<main th:replace=${main}></main>
+	<div class="footer" th:replace="/layout/Footer.html"></div>
+	
+<!-- Scripts -->
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}"></script>
+<script th:src="@{/js/wow.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/webslidemenu.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/imagezoom.js}" type="text/javascript"></script>
+<script th:src="@{/js/jquery.flexslider.js}" type="text/javascript"></script>
+
+<script th:src="@{/assets/cart/shopping-cart-app.js}"></script>
+</body>
+</html>

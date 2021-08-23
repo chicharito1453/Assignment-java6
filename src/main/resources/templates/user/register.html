@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div class="content-area">
+    <div class="registration-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="text-center">Đăng ký tài khoản</h2>
+                    <form th:action="@{/signup}" method="post" th:object="${account}" class="cmxform" id="signUpForm">
+                    	<div class="form-group row">
+                            <label for="username" class="col-sm-2 form-control-label">Tài khoản:</label>
+                            <div class="col-sm-8">
+								<input th:field="*{username}" class="form-control" id="username" placeholder="Nhập username" required="required"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fullname" class="col-sm-2 form-control-label">Họ tên:</label>
+                            <div class="col-sm-8">
+								<input th:field="*{fullname}" class="form-control" id="fullname" placeholder="Nhập họ tên" required="required"/>
+                            </div>
+                        </div>	
+                    	<div class="form-group row">
+                            <label for="email" class="col-sm-2 form-control-label">Email:</label>
+                            <div class="col-sm-8">
+                                <input th:field="*{email}" class="form-control email" id="email" placeholder="Nhập địa chỉ email" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" required="required"/>
+                            </div>
+                        </div>       
+                    	<div class="form-group row">
+                            <label for="sdt" class="col-sm-2 form-control-label">SĐT:</label>
+                            <div class="col-sm-8">
+                                <input th:field="*{sdt}" class="form-control" id="sdt" placeholder="Nhập số điện thoại" pattern="^0(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$" required="required"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-2 form-control-label">Mật khẩu:</label>
+                            <div class="col-sm-8">
+                                <input th:field="*{password}" type="password" class="form-control" id="password" placeholder="Nhập password" required="required"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <input type="submit" class="btn btn-success btn-lg btn-block" id="submitForm" value="Đăng ký" />
+                            </div>
+                        </div>
+                        <div th:replace="/notify/Alert.html" class="notify"></div>
+                    </form>
+                </div>
+            </div> <!--End Row-->
+
+        </div>
+    </div> <!--End Registration page div-->
+
+</div> <!-- End content Area class -->
+	</main>
+</body>
+</html>

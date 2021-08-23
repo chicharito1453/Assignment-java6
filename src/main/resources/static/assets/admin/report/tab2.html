@@ -1,0 +1,31 @@
+<div style="height: 400px;">
+	<table class="table">
+	<thead class="tabpanel">
+		<tr>
+			<td style="color: red;">SẢN PHẨM</td>
+			<td style="color: red;">NHÃN HÀNG</td>
+			<td style="color: red;">TỔNG SỐ LƯỢNG BÁN</td>
+			<td style="color: red;">TỔNG DOANH THU</td>
+		</tr>
+	</thead>
+	<tbody id="tblProduct">
+		<tr ng-repeat="item in pagerP.items track by item.group.id">
+			<td><img
+				ng-src="{{item.group.image==null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.group.image}}"
+				width="50" alt="" class="img img-thumbnail pull-left"> <span
+				class="pull-left cart-product-option"> <strong>{{item.group.name}}</strong><br />
+			</span>
+				<div class="clearfix"></div></td>
+			<td>{{item.group.category.name}}</td>
+			<td>{{item.count}}</td>
+			<td>{{item.sum | number:0}} đ</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<!-- DIRECTION BUTTON -->
+<div class="btn-group me-2" role="group" aria-label="Second group">
+	<button ng-click="pagerP.getPage(0)" type="button" class="btn btn-secondary">First</button>
+	<button ng-click="pagerP.getPage(i)" ng-repeat="i in pagerP.totalPages" type="button" class="btn btn-secondary {{pagerP.page==i?'active':''}}">{{i+1}}</button>
+	<button ng-click="pagerP.getPage(pagerP.count -1)" type="button" class="btn btn-secondary">Last</button>
+</div><br><br>

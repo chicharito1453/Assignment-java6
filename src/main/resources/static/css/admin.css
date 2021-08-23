@@ -1,0 +1,399 @@
+.bodya,h1 {font-family: "Raleway", sans-serif}
+.bodya, html {height: 100%}
+.bgimg {
+  background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+  min-height: 550px;
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+@keyframes floating {
+  to {
+    top: 1.5rem;
+  }
+}
+body h1 {
+  font-size: 2.5rem;
+}
+
+.message {
+  max-width: 700px;
+  margin: 5rem auto 0 auto;
+}
+
+.gandalf {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  top: 1rem;
+  animation: floating 1s infinite alternate ease-in-out;
+}
+.gandalf div {
+  position: absolute;
+}
+.gandalf::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background-color: #1a2130;
+  border-radius: 50%;
+}
+.gandalf .fireball {
+  bottom: -10px;
+  left: 50px;
+  width: 300px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(#EFAC41, #DE8531, #6C1305, black);
+  border: 5px solid #000;
+}
+.gandalf .skirt {
+  bottom: 50px;
+  left: 100px;
+  border-bottom: 230px solid #ededed;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  filter: drop-shadow(0 0 6px #d4d4d4);
+}
+.gandalf .skirt::before {
+  content: "";
+  position: absolute;
+  background-color: #ededed;
+  width: 100px;
+  height: 21px;
+  top: 230px;
+  left: 0px;
+  border-bottom-right-radius: 180%;
+  border-bottom-left-radius: 100%;
+}
+.gandalf .skirt::after {
+  content: "";
+  position: absolute;
+  background-color: #ededed;
+  width: 100px;
+  height: 28px;
+  top: 230px;
+  left: -100px;
+  border-bottom-right-radius: 80%;
+  border-bottom-left-radius: 180%;
+}
+.gandalf .sleeves::before, .gandalf .sleeves::after {
+  content: "";
+  position: absolute;
+  border-bottom: 70px solid #ededed;
+  filter: drop-shadow(0 0 6px #d4d4d4);
+}
+.gandalf .sleeves::before {
+  top: 130px;
+  left: 191px;
+  border-left: 100px solid transparent;
+  border-right: 40px solid transparent;
+  transform: rotate(-34deg);
+}
+.gandalf .sleeves::after {
+  top: 127px;
+  left: 70px;
+  border-left: 40px solid transparent;
+  border-right: 100px solid transparent;
+  transform: rotate(41deg);
+}
+.gandalf .shoulders {
+  background-color: #ededed;
+  border-radius: 50%;
+  width: 100px;
+  height: 130px;
+  left: 150px;
+  top: 120px;
+}
+.gandalf .shoulders .hand {
+  width: 33px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #ffd8ad;
+  top: -6px;
+}
+.gandalf .shoulders .left {
+  left: -70px;
+  transform: rotate(-20deg);
+}
+.gandalf .shoulders .left::after {
+  content: "";
+  position: absolute;
+  background-color: #e6e6e6;
+  width: 126px;
+  height: 8px;
+  border-radius: 4px;
+  transform: rotate(-105deg);
+  transform-origin: bottom;
+  top: -48px;
+  left: -56px;
+}
+.gandalf .shoulders .right {
+  right: -70px;
+  transform: rotate(20deg);
+}
+.gandalf .shoulders .right::after {
+  content: "";
+  position: absolute;
+  background-color: #bf5507;
+  width: 250px;
+  height: 5px;
+  border-radius: 2.5px;
+  transform: rotate(-78deg);
+  transform-origin: left;
+  bottom: -100px;
+  left: 0;
+}
+.gandalf .head {
+  width: 80px;
+  height: 90px;
+  top: 80px;
+  left: 160px;
+  background-color: #ffd8ad;
+  border-radius: 50%;
+}
+.gandalf .head::before, .gandalf .head::after {
+  content: "";
+  position: absolute;
+  background-color: #000;
+}
+.gandalf .head::before {
+  width: 13px;
+  height: 5px;
+  border-radius: 3px;
+  top: 42px;
+  left: 22px;
+  transform: rotate(19deg);
+}
+.gandalf .head::after {
+  width: 13px;
+  height: 5px;
+  border-radius: 3px;
+  top: 42px;
+  right: 22px;
+  transform: rotate(-19deg);
+}
+.gandalf .head .hair {
+  width: 70px;
+  height: 30px;
+  background-color: #c2beb5;
+  border-radius: 50%;
+  top: 0px;
+  left: 5px;
+}
+.gandalf .head .hair::before, .gandalf .head .hair::after {
+  content: "";
+  position: absolute;
+  background-color: #c2beb5;
+  filter: drop-shadow(2px 5px 0 #aba599);
+}
+.gandalf .head .hair::before {
+  top: 13px;
+  left: -16px;
+  width: 25px;
+  height: 100px;
+  border-top-left-radius: 34px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 20px;
+  transform: rotate(8deg);
+}
+.gandalf .head .hair::after {
+  top: 13px;
+  right: -16px;
+  width: 25px;
+  height: 100px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 34px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 100px;
+  transform: rotate(-10deg);
+}
+.gandalf .head .beard {
+  top: 64px;
+  left: 5px;
+  border-top: 80px solid #c2beb5;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-radius: 30px;
+  filter: drop-shadow(2px 5px 0 #aba599);
+}
+.gandalf .head .beard::before {
+  content: "";
+  position: absolute;
+  background-color: pink;
+  width: 20px;
+  height: 5px;
+  border-radius: 40%;
+  top: -70px;
+  left: -9px;
+}
+
+.site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}

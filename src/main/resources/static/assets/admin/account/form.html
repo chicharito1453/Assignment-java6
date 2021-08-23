@@ -1,0 +1,54 @@
+<h1 style="position: absolute; top: 110px; left: 300px">EDIT</h1>
+<form ng-submit="SaveOrUpdate()" class="row g-3"
+	style="border: solid 1px orange; width: 55%; height: 580px; margin-left: 300px; margin-top: 70px; padding: 10px;">
+	<div ng-if="isError" class="alert alert-danger" role="alert">{{message}}</div>
+	<div class="col-md-6">
+		<label for="username" class="form-label"><b>TÀI KHOẢN</b></label>
+		<input ng-model="form.username" class="form-control" id="username" style="border: solid 1px orange;" required="required" />
+	</div>
+	<div class="col-md-6">
+		<label for="fullname" class="form-label"><b>HỌ TÊN</b></label>
+		<input ng-model="form.fullname" class="form-control" id="fullname" style="border: solid 1px orange;" required="required" />
+	</div>
+	<div class="col-md-6">
+		<label for="sdt" class="form-label"><b>SĐT</b></label>
+		<input ng-model="form.sdt" class="form-control" id="sdt" style="border: solid 1px orange;"
+			pattern="^0(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$" required="required" />
+	</div>
+	<div class="col-md-6">
+		<label for="email" class="form-label"><b>EMAIL</b></label>
+		<input ng-model="form.email"class="form-control" id="email" style="border: solid 1px orange;"
+			pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" required="required" />
+	</div>
+	<div class="col-md-6">
+		<label for="password" class="form-label"><b>MẬT KHẨU</b></label>
+		<input ng-model="form.password" name="password" type="password" class="form-control" 
+		id="password" style="border: solid 1px orange;" required="required">
+	</div>
+	<div class="col-md-6">
+		<label for="verifycode" class="form-label"><b>VERIFY</b></label>
+		<input ng-model="form.verifycode" class="form-control" id="verifycode" style="border: solid 1px orange;" readonly="true" />
+	</div>
+	<!-- Trạng thái -->
+	<div class="col-md-6">
+		<label for="activated1" class="form-label"><b>TRẠNG THÁI</b></label><br>
+		<div class="mb-3 form-check" style="display: inline-block;">
+			<input ng-model="form.activated" name="isEnable" type="radio" class="form-check-input" 
+			id="activated1" ng-value="false" required="required" />
+			<label class="form-check-label" for="activated1">Chưa kích hoạt</label>
+		</div>
+		<div class="mb-3 form-check" style="display: inline-block;">
+			<input ng-model="form.activated" name="isEnable" type="radio" class="form-check-input" 
+			id="activated2" ng-value="true" required="required" />
+			<label class="form-check-label" for="activated2">Đã kích hoạt</label>
+		</div>
+	</div>
+	<!--End Trạng thái -->
+	<div class="col-12">
+		<button ng-click="setCreate()" type="{{!isUpdate?'submit':'button'}}" class="btn btn-primary" style="font-size: larger;">Thêm</button>
+		<button ng-click="setUpdate()" type="{{isUpdate?'submit':'button'}}" class="btn btn-primary" style="font-size: larger;">Sửa</button>
+		<button ng-click="reset()" type="button" class="btn btn-primary" style="font-size: larger;">Reset</button>
+	</div>
+</form>
+<br>
+<br>

@@ -1,0 +1,19 @@
+<!--  QUẢN LÝ TÀI KHOẢN -->
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item" role="presentation"><a
+			class="nav-link active" id="home-tab" data-bs-toggle="tab"
+			href="#home" role="tab" aria-controls="home" aria-selected="true">TÀI KHOẢN</a></li>
+		<li class="nav-item" role="presentation"><a class="nav-link"
+			id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
+			aria-controls="profile" aria-selected="false">DANH SÁCH TÀI KHOẢN</a></li>
+	</ul>
+	<div class="tab-content" id="myTabContent">
+		<!-- TAB CHỈNH SỬA -->
+		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<div ng-include="'/assets/admin/account/form.html'"></div>
+		</div>
+		<!-- TAB DANH SÁCH -->
+		<div align="center" class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+			<div ng-include="'/assets/admin/account/table.html'"></div>
+		</div>
+	</div>

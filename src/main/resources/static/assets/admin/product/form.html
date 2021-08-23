@@ -1,0 +1,109 @@
+<div class="container">
+	<div class="row">
+		<!-- FORM -->
+		<form name="myForm" ng-submit="SaveOrUpdate()">
+			<!--EDIT -->
+			<div ng-if="isError" class="alert alert-danger" role="alert">Chưa chọn sản phẩm cần thao tác</div>
+			<div class="col-sm">
+				<div style="width: 100%;">
+					<div class="mb-3">
+						<label for="name" class="form-label">TÊN SẢN PHẨM</label> <input ng-model="form.name"
+							name="name" class="form-control" id="name"
+							aria-describedby="emailHelp" required="required" />
+					</div>
+					<div class="mb-3">
+						<label for="price" class="form-label">GIÁ</label> <input ng-model="form.price"
+							type="number" name="price" class="form-control" id="price"
+							min="0" required="required">
+					</div>
+					<!-- KM -->
+					<div class="mb-3">
+						<label for="discount" class="form-label">KHUYẾN MÃI</label>
+						<div class="input-group mb-3">
+							<input type="number" name="discount" class="form-control" ng-model="form.discount"
+								id="discount" min="0" max="100" required="required"> <span
+								class="input-group-text">%</span>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="category" class="form-label">NHÃN HÀNG</label> <select ng-model="form.category"
+							ng-options="cate.name for cate in categories track by cate.id" class="form-control">
+						</select>
+					</div>
+					<!-- ẢNH THỨ 2 -->
+					<div class="mb-3">
+						<!-- RADIO BOX -->
+						<div class="mb-3 form-check" style="display: inline-block;">
+							<input type="radio" name="available" class="form-check-input" ng-model="form.available"
+								id="available1" ng-value="true" required="required"> <label
+								class="form-check-label" for="available1">CÒN HÀNG</label>
+						</div>
+						&emsp;
+						<div class="mb-3 form-check" style="display: inline-block;">
+							<input type="radio" name="available" class="form-check-input" ng-model="form.available"
+								id="available2" ng-value="false" required="required"> <label
+								class="form-check-label" for="available2">HẾT HÀNG</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- IMAGE -->
+				<div class="container">
+					<div class="row">
+						<div class="col order-first">
+							<!-- image 1 -->
+							<div class="col-sm">
+								<img id="poster1"
+									ng-src="{{form.image==null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+form.image}}"
+									class="img-thumbnail" alt="..."
+									style="height: 345px; width: 330px;"> <label for="image"
+									class="form-label">ẢNH THỨ 1</label> <input
+									style="width: 330px;" id="image" class="form-control"
+									onchange="angular.element(this).scope().chooseFile(this.files)" accept="image/*" type="file">
+							</div>
+						</div>
+						<div class="col">
+							<!-- image 2 -->
+							<div class="col-sm">
+								<img id="poster2"
+									ng-src="{{form.image2==null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+form.image2}}"
+									class="img-thumbnail" alt="..."
+									style="height: 345px; width: 330px;"> <label for="image2"
+									class="form-label">ẢNH THỨ 2</label> <input
+									style="width: 330px;" id="image2" class="form-control"
+									onchange="angular.element(this).scope().chooseFile2(this.files)" accept="image/*" type="file">
+							</div>
+						</div>
+						<div class="col order-last">
+							<!-- image 3 -->
+							<div class="col-sm">
+								<img id="poster3"
+									ng-src="{{form.image3==null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+form.image3}}"
+									class="img-thumbnail" alt="..."
+									style="height: 345px; width: 330px;"> <label for="image3"
+									class="form-label">ẢNH THỨ 3</label> <input
+									style="width: 330px;" id="image3" class="form-control"
+									onchange="angular.element(this).scope().chooseFile3(this.files)" accept="image/*" type="file">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- DESCRIPTION -->
+				<div class="card"
+					style="height: 140px; margin-top: 23px; width: 101%">
+					<h5 class="card-header">THÔNG TIN SẢN PHẨM?</h5>
+					<textarea name="description" cols="190" rows="5" ng-model="form.description"
+						required="required">Sản phẩm hàng đầu</textarea>
+				</div>
+				<!-- BUTTON -->
+				<div class="button" style="margin-left: 70%; margin-top: 10px;">
+					<button ng-click="setCreate()" type="submit" class="btn btn-primary">Thêm</button>
+					<button ng-click="setUpdate()"  type="{{isUpdate == true ? 'submit' : 'button'}}" class="btn btn-primary">Sửa</button>
+					<!-- Button trigger modal -->
+					<button ng-click="delete(form)" type="button" class="btn btn-primary">Xóa</button>
+					<button ng-click="reset()" type="reset" class="btn btn-primary">Reset</button><br> <br>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

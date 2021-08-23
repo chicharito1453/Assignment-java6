@@ -1,0 +1,36 @@
+<div style="height: 300px;">
+	<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Người đặt hàng</th>
+			<th scope="col">Tài khoản</th>
+			<th scope="col">Sđt</th>
+			<th scope="col">Email</th>
+			<th scope="col">Ngày đặt hàng</th>
+			<th scope="col">Địa chỉ</th>
+			<th scope="col">Tổng tiền</th>
+			<th scope="col">Trạng thái</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in pager.items track by item.id">
+			<td>{{item.account.fullname}}</td>
+			<td>{{item.account.username}}</td>
+			<td>{{item.account.sdt}}</td>
+			<td>{{item.account.email}}</td>
+			<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+			<td>{{item.address}}</td>
+			<td>{{item.total | number:0}} đ</td>
+			<td>{{item.status?'Đã thanh toán':'Chưa thanh toán'}}</td>
+			<td><button ng-click="edit(item)" type="button" class="btn btn-primary" style="font-size: larger;">Edit</button></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<!-- DIRECTION BUTTON -->
+<div class="btn-group me-2" role="group" aria-label="Second group">
+	<button ng-click="pager.getPage(0)" type="button" class="btn btn-secondary">First</button>
+	<button ng-click="pager.getPage(i)" ng-repeat="i in pager.totalPages" type="button" class="btn btn-secondary {{pager.page==i?'active':''}}">{{i+1}}</button>
+	<button ng-click="pager.getPage(pager.count -1)" type="button" class="btn btn-secondary">Last</button>
+</div><br><br>

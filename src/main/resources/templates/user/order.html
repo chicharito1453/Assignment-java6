@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<h2 th:unless="${test}" align="center">Hiện tại không có đơn hàng nào</h2><br><br>
+            <div th:unless="${test}" style="display: flex;justify-content: center;">
+		    	<a th:href="@{/products}" class="btn btn-success btn-lg "><i class="fa fa-plus"></i> Mua hàng</a>
+		    </div><br><br><br>
+		<div class="registration-page">
+    <div th:if="${test}" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2 class="text-center">Đơn hàng</h2>
+            <table  class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Người đặt</th>
+                    <th scope="col">Ngày</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">Tổng tiền</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="item : ${items}" th:if="${!item.status}">
+		            <td>[[${item.account.fullname}]]</td>
+		            <td>[[${item.createDate}]]</td>
+		            <td>[[${item.address}]]</td>
+		            <td>[[${#numbers.formatDecimal(item.total,0,'COMMA',0,'POINT')}]] đ</td>
+		            <td><a th:href="@{|/orderDetail/${item.id}|}">Xem chi tiết</a></td>
+		            <td><a th:href="@{|/order/remove/${item.id}|}">Hủy đơn</a></td>
+		          </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div> <!-- End content Area class -->
+	</main>
+</body>
+</html>
+

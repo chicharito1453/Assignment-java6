@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+	<h2 align="center">Kết quả tìm kiếm</h2>
+		<div class="content-area">
+    <div class="container">
+        <div class="cart-page">
+            <div th:if="${items == null}" class="alert alert-danger" role="alert" style="text-align: center;">Không tìm thấy sản phẩm</div>
+            <div th:if="${items == null}" style="display: flex;justify-content: center;">
+		    	<a th:href="@{/products}" class="btn btn-success btn-lg "><i class="fa fa-plus"></i> Xem danh sách sản phẩm</a>
+		    </div>
+                <table th:if="${items != null}" class="table">
+                    <thead>
+                        <tr>
+                            <th width="50%">Sản phẩm</th>
+                            <th width="20%">Giá</th>
+                            <th>Trạng thái</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                       <tr th:each="item : ${items}">
+	                      <td>
+	                      	<img th:src="@{|${item.image == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':item.image}|}" width="50" alt="" class="img img-thumbnail pull-left">
+	                                <span class="pull-left cart-product-option">	
+	                                    <strong>[[${item.name}]]</strong><br />
+	                                </span>
+	                                <div class="clearfix"></div>
+	                            </td>
+	                            <td>[[${item.price-(item.price*item.discount/100)}]] đ</td>
+	                            <td>[[${item.available?'Còn hàng':'Hết hàng'}]]</td>
+	                            <td><a th:href="@{|/productSingle/${item.id}|}"><input class="btn btn-red btn-sm" value="Xem chi tiết"></a></td>
+	                   </tr>               
+                        </tbody>
+                    </table>
+            </div> <!--End Cart page-->
+        </div> <!-- End Container inside Content Area -->
+    </div> <!-- End content Area class -->
+	</main>
+</body>
+</html>
+

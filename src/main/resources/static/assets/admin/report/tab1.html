@@ -1,0 +1,24 @@
+<div style="height: 250px;">
+	<table class="table">
+	<thead class="tabpanel">
+		<tr>
+			<td style="color: red;">NHÃN HÀNG</td>
+			<td style="color: red;">TỔNG GIÁ</td>
+			<td style="color: red;">SỐ SẢN PHẨM</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in pagerC.items track by item.group.id">
+			<td>{{item.group.name}}</td>
+			<td>{{item.sum | number:0}} đ</td>
+			<td>{{item.count}}</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<!-- DIRECTION BUTTON -->
+<div class="btn-group me-2" role="group" aria-label="Second group">
+	<button ng-click="pagerC.getPage(0)" type="button" class="btn btn-secondary">First</button>
+	<button ng-click="pagerC.getPage(i)" ng-repeat="i in pagerC.totalPages" type="button" class="btn btn-secondary {{pagerC.page==i?'active':''}}">{{i+1}}</button>
+	<button ng-click="pagerC.getPage(pagerC.count -1)" type="button" class="btn btn-secondary">Last</button>
+</div><br><br>

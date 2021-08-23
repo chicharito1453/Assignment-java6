@@ -1,0 +1,85 @@
+<div class="container">
+	<div class="row">
+		<form ng-submit="update()"><br>
+			<div ng-if="isError" class="alert alert-danger" role="alert">Chưa chọn đơn hàng cần thao tác</div>
+			<div class="mb-3">
+				<label for="fullname" class="form-label">NGƯỜI ĐẶT HÀNG</label> <input
+					class="form-control" id="fullname" readonly="readonly" ng-model="form.account.fullname"
+					required="required" />
+			</div>
+			<div class="mb-3">
+				<label for="sdt" class="form-label">SĐT</label> <input
+					class="form-control" id="sdt" readonly="readonly" ng-model="form.account.sdt"
+					required="required" />
+			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label">EMAIL</label> <input
+					class="form-control" id="email" readonly="readonly" ng-model="form.account.email"
+					required="required" />
+			</div>
+			<div class="mb-3">
+				<label for="createDate" class="form-label">NGÀY ĐẶT HÀNG</label> <input
+					class="form-control" id="createDate" readonly="readonly" ng-model="form.createDate | date:'dd-MM-yyyy'"
+					required="required" />
+			</div>
+			<div class="mb-3">
+				<label for="address" class="form-label">ĐỊA CHỈ</label> <input
+					name="address" class="form-control" id="address" ng-model="form.address"
+					required="required" />
+			</div>
+			<div class="mb-3">
+				<!-- RADIO BOX -->
+				<div class="mb-3 form-check" style="display: inline-block;">
+					<input type="radio" name="status" class="form-check-input" id="status1"
+						ng-model="form.status" ng-value="true" required="required"> <label
+						class="form-check-label" for="status1">ĐÃ THANH TOÁN</label>
+				</div>
+				&emsp;
+				<div class="mb-3 form-check" style="display: inline-block;">
+					<input type="radio" name="status" class="form-check-input" id="status2"
+						ng-model="form.status" ng-value="false" required="required"> <label
+						class="form-check-label" for="status2">CHƯA THANH TOÁN</label>
+				</div>
+			</div>
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary" style="font-size: larger;">Sửa</button>
+				<button ng-click="delete(form)" type="button" class="btn btn-primary" style="font-size: larger;">Xóa</button>
+				<button ng-click="reset()" type="button" class="btn btn-primary" style="font-size: larger;">Reset</button>
+				<br>
+				<br>
+			</div>
+		</form>
+	</div>
+	<div class="cart-page">
+		<form action="checkout.html">
+			<table class="table">
+				<thead>
+					<tr>
+						<th width="50%">Sản phẩm</th>
+						<th width="20%">Nhãn hàng</th>
+						<th width="20%">Số lượng</th>
+						<th width="20%">Giá</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in form.orderDetails track by item.id">
+						<td><img
+							ng-src="{{item.product.image==null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.product.image}}"
+							width="50" alt="" class="img img-thumbnail pull-left"> <span
+							class="pull-left cart-product-option"> <strong>{{item.product.name}}</strong><br />
+						</span>
+							<div class="clearfix"></div></td>
+						<td>{{item.product.category.name}}</td>
+						<td>{{item.quantity}}</td>
+						<td>{{item.price | number:0}} đ</td>
+					</tr>
+					<tr>
+						<td colspan="5" rowspan="5"><b>Tổng tiền</b> <b
+							style="margin-left: 73%; color: red; font-weight: 100px;">
+								{{form.total | number:0}} đ</b></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>

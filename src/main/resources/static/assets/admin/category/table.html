@@ -1,0 +1,24 @@
+<div style="height: 370px;">
+	<table class="table">
+	<thead>
+		<tr>
+			<td>MÃ NHÃN HÀNG</td>
+			<td>TÊN NHÃN HÀNG</td>
+			<td></td>
+		</tr>
+	</thead>
+	<tbody id="tblCategory">
+		<tr ng-repeat="item in pager.items track by item.id">
+			<td>{{item.id}}</td>
+			<td>{{item.name}}</td>
+			<td><button ng-click="edit(item)" class="btn btn-primary">Edit</button></td>
+		</tr>
+	</tbody>
+</table><br>
+<!-- DIRECTION BUTTON -->
+<div class="btn-group me-2" role="group" aria-label="Second group">
+	<button ng-click="pager.getPage(0)" type="button" class="btn btn-secondary">First</button>
+	<button ng-click="pager.getPage(i)" ng-repeat="i in pager.totalPages" type="button" class="btn btn-secondary {{pager.page==i?'active':''}}">{{i+1}}</button>
+	<button ng-click="pager.getPage(pager.count -1)" type="button" class="btn btn-secondary">Last</button>
+</div><br><br>
+</div>

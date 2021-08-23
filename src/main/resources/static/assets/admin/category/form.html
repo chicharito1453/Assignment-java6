@@ -1,0 +1,23 @@
+<h1 style="position: absolute; top: 110px; left: 300px">EDIT</h1>
+<form ng-submit="SaveOrUpdate()" class="row g-3"
+	style="border: solid 1px orange; width: 55%; height: 280px; margin-left: 300px; margin-top: 70px; position: relative; padding: 10px;">
+	<div class="col-md-6">
+		<label for="id" class="form-label"><b>MÃ NHÃN HÀNG</b></label> <input ng-model="form.id"
+			class="form-control" id="id" style="border: solid 1px orange;"
+			maxlength="4" required="required" >
+	</div>
+	<div class="col-md-6">
+		<label class="form-label"><b>TÊN NHÃN HÀNG</b></label> <input ng-model="form.name"
+			class="form-control" id="name" style="border: solid 1px orange;"
+			required="required" >
+	</div>
+	<div ng-if="isError" class="alert alert-danger" role="alert">{{message}}</div>
+	<div class="col-12">
+		<button ng-click="setCreate()" type="{{isUpdate == false ? 'submit' : 'button'}}" class="btn btn-primary" style="font-size: larger;">Thêm</button>
+		<button ng-click="setUpdate()" type="{{isUpdate == true ? 'submit' : 'button'}}" class="btn btn-primary" style="font-size: larger;">Sửa</button>
+		<button ng-click="delete(form)" type="button" class="btn btn-primary" style="font-size: larger;">Delete</button>
+		<button ng-click="reset()" type="button" class="btn btn-primary" style="font-size: larger;">Reset</button>
+	</div>
+</form>
+<br>
+<br>

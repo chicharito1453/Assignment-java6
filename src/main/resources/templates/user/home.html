@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div class="featured-products">
+    <div class="container">
+        <h2 class="title-div wow slideInLeft pull-left" data-wow-duration="1s" data-wow-delay="0s" data-wow-offset="10">Sản phẩm mới nhất</h2><div class="clear"></div>
+        <div class="featured-navigation pull-right">
+            <span class="">
+                <a class="owl-prev owl-navigaiton"><i class="fa fa-angle-double-right"></i></a>
+            </span>
+            <span class="stop">
+                <a class="owl-next owl-navigaiton">||</a>
+            </span>
+            <span class="">
+                <a class="owl-next owl-navigaiton"><i class="fa fa-angle-double-left"></i></a>
+            </span>        
+        </div>
+        <div class="clear"></div>
+        <div class="featured-items">
+            <!-- Set up your HTML -->
+            	<div class="owl-carousel">
+            	
+	            	<div th:each="item : ${newItems.content}" style="height: 350px;position: relative;" class="item featured1">
+		                    <div class="item-full animated featured1-inner  width 0">
+		                        <a th:href="@{|/productSingle/${item.id}|}"><h4>[[${item.name}]]</h4></a>
+		                        <p>[[${item.description}]]</p>
+		                        <h5>[[${#numbers.formatDecimal(item.price-(item.price*item.discount/100),0,'COMMA',0,'POINT')}]] đ</h5>
+		                        <h5 th:unless="${item.available}">HẾT HÀNG</h5>
+		                        <a th:attr="ng-click=@{|cart.add(${item.id})|}" th:if="${item.available}" style="position: absolute;bottom: 0px;right: 20px;" class="btn btn-cart">
+				                   Thêm vào giỏ
+				                </a>
+		                    </div>
+		                    <a th:href="@{|/productSingle/${item.id}|}">
+		                        <img th:src="@{|${item.image == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image}|}" class="img img-responsive" alt="Product1">
+		                    </a>
+		             </div> <!-- Single Featured Item -->  
+	                         
+            </div>      
+        </div>
+    </div>
+</div> <!--End Featured products Div-->
+
+
+<div class="latest-products">
+    <div class="container">
+        <h2 class="title-div wow slideInLeft" data-wow-duration="1s" data-wow-delay="0s" data-wow-offset="10">Sản phẩm khuyến mãi</h2>
+        <div class="products">
+            <div class="row">
+                <div th:each="item : ${items}" th:if="${item.discount>0}" class="col-md-3">
+		                    <div  class="product-item">
+		                        <div style="height: 350px;position: relative;" class="product-borde-inner">
+		                            <a th:href="@{|/productSingle/${item.id}|}">
+		                                <img th:src="@{|${item.image == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image}|}" class="img img-responsive"/>
+		                            </a> 
+		                            <div class="product-price">
+		                                <a th:href="@{|/productSingle/${item.id}}|">[[${item.name}]]</a><br>
+		                                <i class="fa fa-gift" style="color: red;" aria-hidden="true">Khuyến mãi:</i>
+		                                <span class="prev-price">
+		                                    <del>[[${#numbers.formatDecimal(item.price,0,'COMMA',0,'POINT')}]] đ</del>&emsp;&emsp;
+		                                </span>
+		                                <span class="current-price">[[${#numbers.formatDecimal(item.price-(item.price*item.discount/100),0,'COMMA',0,'POINT')}]] đ
+		                                </span>
+		                            </div>
+		                            <h3 th:unless="${item.available}" align="center" style="color: red;">HẾT HÀNG</h3>
+		                            <a th:attr="ng-click=@{|cart.add(${item.id})|}" th:if="${item.available}" style="position: absolute;bottom: 0px;right: 20px;" class="btn btn-cart">
+				                       Thêm vào giỏ
+				                    </a>
+		                            <div class="clearfix"></div>
+		                        </div>
+		                    </div> 
+		            </div><!-- End Latest products[single] -->
+                <div class="clearfix"></div>
+            </div> <!-- End Latest products row-->
+            <a th:href="@{/products}" class="btn btn-blue btn-lg pull-right btn-more wow slideInRight" data-wow-duration="1s" data-wow-delay="0s" data-wow-offset="10"> 
+                <span>Danh sách sản phẩm.. </span>
+            </a>
+            <div class="clear"></div>
+        </div> <!-- End products div-->
+    </div> <!-- End container latest products-->
+</div>  <!-- End Latest products -->
+	</main>
+</body>
+</html>

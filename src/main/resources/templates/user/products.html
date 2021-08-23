@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div class="content-area prodcuts">
+    <div class="row">
+        <div class="container">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <div class="sidebar-products-main">
+                    <form th:action="@{/products}" method="post" accept-charset="utf-8">
+                    	<div class="sidebar-single">
+                        <div class="sidebar-title">
+                            <a data-toggle="collapse"  class="pointer" aria-expanded="true" data-target="#brandCollapse" aria-controls="#brandCollapse">
+                                <span class="pull-left title-sidebar">Tìm theo nhãn hàng</span>
+
+                                <span class="pull-right"><i class="fa fa-plus"></i></span>
+                                <span class="pull-right"><i class="fa fa-minus"></i></span>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div> <!--End Sidebar title div-->
+
+                        <div id="brandCollapse" class="collapse in">
+                                <div ng-repeat="item in category.items track by item.id">
+                                <input ng-model="item.checked" style="display: none;">
+                                	<input ng-click="category.saveItem(item.id)" ng-checked="item.checked" ng-value="item.id" type="checkbox" ng-attr-id="{{item.id}}" name="categories" />
+	                            	<label for="{{item.id}}" ><span></span>{{item.name}}</label><br>
+                                </div>
+                                <div class="clearfix"></div>
+                        </div>
+                    </div> <!--End Single Sidebar-->
+
+                    <div class="sidebar-single">
+                        <div class="sidebar-title">
+                            <a data-toggle="collapse" class="pointer" aria-expanded="true" data-target="#brandPriceCollapse" aria-controls="#brandPriceCollapse">
+                                <span class="pull-left title-sidebar">Tìm theo giá</span>
+
+                                <span class="pull-right"><i class="fa fa-plus"></i></span>
+                                <span class="pull-right"><i class="fa fa-minus"></i></span>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div> <!--End Sidebar title div-->
+
+                        <div id="brandPriceCollapse" class="collapse in">
+                                <input th:checked="${#strings.equals(#numbers.formatInteger(session.checkP.toString(),3), '1000000')}" value="1000000" type="checkbox" id="price1" name="priceP" />
+                                <label  for="price1"><span></span>Dưới 1 triệu</label><br />
+
+                                <input th:checked="${#strings.equals(#numbers.formatInteger(session.checkP.toString(),3), '3000000')}" value="3000000" type="checkbox" id="price2" name="priceP" />
+                                <label for="price2"><span></span>Dưới 3 triệu</label><br />
+
+                                <input th:checked="${#strings.equals(#numbers.formatInteger(session.checkP.toString(),3), '5000000')}" value="5000000" type="checkbox" id="price3" name="priceP" />
+                                <label for="price3"><span></span>Dưới 5 triệu</label><br />
+
+                                <input th:checked="${#strings.equals(#numbers.formatInteger(session.checkP.toString(),3), '10000000')}" value="10000000" type="checkbox" id="price4" name="priceP" />
+                                <label for="price4"><span></span>Dưới 10 triệu</label><br />
+
+                                <input th:checked="${#strings.equals(#numbers.formatInteger(session.checkP.toString(),3), '20000000')}" value="20000000" type="checkbox" id="price5" name="priceP" />
+                                <label for="price5"><span></span>Dưới 20 triệu</label><br />
+
+                                
+                                <div class="clearfix"></div>
+                        </div>
+                    </div> <!--End Single Sidebar-->  
+                    <input type="submit" name="submit_brand_search" class="btn btn-red pull-right btn-sm" value="Search">
+                    </form>                 
+
+
+                </div>
+            </div>
+            <div class="col-sm-10 col-md-10 col-lg-10">
+                <ol class="breadcrumb breadcrumb1">
+                    <li><a href="/index">Trang chủ</a></li>
+                    <li class="active">Sản phẩm</li>
+                </ol>
+                <div class="product-top">
+                    <h4>Tất cả sản phẩm</h4>
+                    <ul> 
+                        <li class="dropdown head-dpdn">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sắp xếp<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/products?criteria=createDate">Mới nhất</a></li> 
+                                <li><a href="/products?criteria=price">Giá cả</a></li> 
+                                <li><a href="/products?criteria=name">Tên</a></li> 
+                            </ul> 
+                        </li>
+                    </ul> 
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="all-products">
+                    <div class="">
+                        <h2 class="title-div wow slideInRight" data-wow-duration="1s" data-wow-delay="0s" data-wow-offset="10">Danh sách sản phẩm </h2>
+                        <div class="products">
+                            <div class="row"  id="ListProducts">
+								<h3 th:if="${items.isEmpty()}" align="center">KHÔNG CÓ SẢN PHẨM PHÙ HỢP</h3>
+								<div th:each="item : ${items.content}" class="col-md-3">
+	                                    <div class="product-item">
+	                                        <div style="height: 300px;position: relative;" class="product-borde-inner">
+	                                            <a th:href="@{|/productSingle/${item.id}|}">
+	                                                <img th:src="@{|${item.image == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image }|}" class="img img-responsive"/>
+	                                            </a> 
+	
+	                                            <div class="product-price">
+	                                                <a th:href="@{|/productSingle/${item.id}|}">[[${item.name}]]</a><br>
+	                                                <div th:if="${item.discount>0}">
+	                                                	<i class="fa fa-gift" style="color: red;" aria-hidden="true">Khuyến mãi:</i><br>
+	                                                	<span class="prev-price">
+		                                                    <del>[[${#numbers.formatDecimal(item.price,0,'COMMA',0,'POINT')}]] đ</del>
+		                                                </span>
+	                                                </div>
+	                                                <span class="current-price">
+	                                                    [[${#numbers.formatDecimal(item.price-(item.price*item.discount/100),0,'COMMA',0,'POINT')}]] đ
+	                                                </span>
+	                                            </div>
+	                                            <h3 th:unless="${item.available}" align="center" style="color: red;">HẾT HÀNG</h3>
+	                                            <a th:onclick="|callCartAdd('${item.id}')|" th:if="${item.available}" style="position: absolute;bottom: 0px;right: 20px;" class="btn btn-cart">
+								                   Thêm vào giỏ
+								                </a>
+	                                            <div class="clear"></div>
+	                                        </div>
+	                                    </div> 
+	                                </div><!-- End Latest products[single] -->
+
+
+
+
+                                <div class="clear"></div>
+                            </div> <!-- End Latest products row-->
+                            <div  id="load">
+                            	<a th:unless="${items.isEmpty() or ttPage==0}" onclick="LoadMore()" class="btn btn-blue btn-lg pull-right btn-more wow slideInRight" data-wow-duration="1s" data-wow-delay="0s" data-wow-offset="10"> 
+                                	<span>Load more.. </span>
+                            	</a>
+                            </div>
+                            <input type="hidden" th:value="${criteria }" id="criteria">
+                            <input type="hidden" th:value="${ttPage }" id="ttPage">
+                            <div class="clear"></div>
+                        </div> <!-- End products div-->
+                    </div> <!-- End container latest products-->
+                </div>  <!-- End Latest products -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="featured-products">
+        <div class="container">
+            <h2 class="title-div wow slideInLeft pull-left" data-wow-duration="1s" data-wow-delay="0s" data-wow-offset="10">Sản phẩm mới nhất</h2><div class="clearfix"></div>
+            <div class="featured-navigation pull-right">
+                <span class="">
+                    <a class="owl-prev owl-navigaiton"><i class="fa fa-angle-double-right"></i></a>
+                </span>
+                <span class="stop">
+                    <a class="owl-next owl-navigaiton">||</a>
+                </span>
+                <span class="">
+                    <a class="owl-next owl-navigaiton"><i class="fa fa-angle-double-left"></i></a>
+                </span>
+
+            </div>
+            <div class="clear"></div>
+            <div class="featured-items">
+                <!-- Set up your HTML -->
+                <div class="owl-carousel">
+					<div th:each="item : ${newItems.content}" style="height: 300px;position: relative;" class="item featured1">
+	                        <div class="item-full animated featured1-inner  width0">
+	                            <a th:href="@{|/productSingle/${item.id}|}"><h4>[[${item.name}]]</h4></a>
+	                            <p>[[${item.description}]]</p>
+	                            <h5>[[${#numbers.formatDecimal(item.price-(item.price*item.discount/100),0,'COMMA',0,'POINT')}]] đ</h5>
+	                            <h5 th:unless="${item.available}">HẾT HÀNG</h5>
+	                                <a th:attr="ng-click=@{|cart.add(${item.id})|}" th:if="${item.available}"  style="position: absolute;bottom: 0px;right: 20px;" class="btn btn-cart">
+								       Thêm vào giỏ
+								    </a>	
+	                        </div>
+	                        <a th:href="@{|/productSingle/${item.id}|}">
+	                            <img th:src="@{|${item.image == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image}|}" class="img img-responsive" alt="Product1">
+	                        </a>
+	                    </div> <!-- Single Featured Item --> 
+                               
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> <!-- End content Area class -->
+<script type="text/javascript">
+var pageNumber = 0;
+function LoadMore() {
+	event.preventDefault();
+	var criteria = document.getElementById("criteria").value;
+	pageNumber++;
+	$.ajax({
+		url : '/products/'+ criteria,
+		method : 'GET',
+		data : {
+			page : pageNumber,
+		},
+		success : function(data) {
+			var views = document.getElementById("ListProducts");
+			var view2 = document.getElementById("load");
+			var ttPage = document.getElementById("ttPage").value;
+			if(pageNumber==ttPage){
+				view2.innerHTML = '';
+			}
+			views.innerHTML += data;
+		},
+		error : function(jqXHR, exception) {
+			console.log('Error occured!!');
+		}
+	});
+}
+
+function callCartAdd(id){
+	var scope = angular.element(document.getElementById('wxz')).scope()
+	scope.cart.add(id)	
+}
+
+</script>
+	</main>
+</body>
+</html>

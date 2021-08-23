@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+	<main>
+		<div align="center" th:if="${item == null}">
+			<div class="number">404</div>
+			<div class="text"><span>Ooops...</span><br>page not found</div>
+			<a class="me" href="https://codepen.io/uzcho_/pens/popular/?grid_type=list" target="_blank"></a><br><br><br>
+		</div>
+		<div th:if="${item != null}" class="content-area prodcuts">
+		    <div class="container">
+		        <ol class="breadcrumb breadcrumb1">
+		            <li><a th:href="@{/home}">Trang chủ</a></li>
+		            <li><a th:href="@{/products}">Sản phẩm</a></li>
+		            <li class="active">TPD Shop</li>
+		        </ol>
+		        <div class="single-product">
+		            <div class="row" id="">
+		                <div class="col-md-6 single-top-left">  
+		                    <div class="flexslider">
+		                        <ul class="slides">
+		                            <li th:attr="data-thumb=${item.image == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image}">
+		                                <div class="thumb-image detail_images"> <img th:src="${item.image == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image }" data-imagezoom="true" class="img-responsive" alt=""> </div>
+		                            </li>
+		                            <li th:attr="data-thumb=${item.image2 == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image2}">
+		                                <div class="thumb-image"> <img th:src="${item.image2 == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image2 }" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+		                            </li>
+		                            <li th:attr="data-thumb=${item.image3 == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image3}">
+		                                <div class="thumb-image"> <img th:src="${item.image3 == null?'http://www.eurostrada.net/wp-content/uploads/2015/04/Image-Coming-Soon.png':'/assets/images/'+item.image3 }" data-imagezoom="true" class="img-responsive" alt="" />  </div>
+		                            </li> 
+		                        </ul>
+		                    </div>
+		                </div>
+		                <div class="col-md-6 single-top-right">
+		                    <h3 class="item_name">[[${item.name}]]</h3>
+		                    <p>Ghi chú: Sản phẩm sẽ được giao đến nơi từ 2-3 ngày kể từ ngày đặt. </p>
+		                    <div class="single-price">
+		                        <ul>
+		                        	<!--khuyến mãi-->
+			                            <div th:if="${item.discount>0}" class="khuyenMai">
+			                                <li><i class="fa fa-gift" style="color: red;" aria-hidden="true">Khuyến mãi:</i></li>
+			                                <li><span class="off"><b>Giảm [[${item.discount}]]%</b></span></li> 
+			                            </div>  <!---->
+			                            <li th:if="${item.discount>0}"><del>[[${#numbers.formatDecimal(item.price,0,'COMMA',0,'POINT')}]] đ</del></li>
+		                            <li style="font-size: 25px;" class="product-price">
+		                            	[[${#numbers.formatDecimal(item.price-(item.price*item.discount/100),0,'COMMA',0,'POINT')}]] đ</li>  
+		                        </ul>   
+		                    </div> 
+		                    <p class="single-price-text">Sản phẩm được bảo hành và phân phối trên trang web online TPD Shop. Đọc chi tiết thông tin sản phẩm bên dưới. Xem các mặt hàng khác <a style="text-decoration: none;color: rgb(72, 72, 219);" href="products.html">tại đây</a>. </p>
+		                    <form>
+		                        <input type="hidden" name="cmd" value="_cart" />
+		                        <input type="hidden" name="add" value="1" /> 
+		                        <input type="hidden" name="w3ls_item" value="Snow Blower" /> 
+		                        <input type="hidden" name="amount" value="540.00" /> 
+		                        <h3 th:unless="${item.available}" align="center" style="color: red;">HẾT HÀNG</h3>
+		                        <button th:attr="ng-click=@{|cart.add(${item.id})|}" th:if="${item.available}" type="submit" class="btn btn-red" ><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ</button>
+		                        <button th:attr="ng-click=@{|cart.BuyButton(${item.id})|}" th:if="${item.available}" class="btn btn-primary"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Mua hàng</button>
+		                    </form>
+		                    <div class="rating">
+				                <input th:onchange="|Rating(this,${item.id})|" type="radio" name="star" id="star1" value="5">
+				                <label for="star1"></label>
+				                <input th:onchange="|Rating(this,${item.id})|" type="radio" name="star" id="star2" value="4">
+				                <label for="star2"></label>
+				                <input th:onchange="|Rating(this,${item.id})|" type="radio" name="star" id="star3" value="3">
+				                <label for="star3"></label>
+				                <input th:onchange="|Rating(this,${item.id})|" type="radio" name="star" id="star4" value="2">
+				                <label for="star4"></label>
+				                <input th:onchange="|Rating(this,${item.id})|" type="radio" name="star" id="star5" value="1">
+				                <label for="star5"></label>
+				                <i id="rate">[[${rate}]]</i>
+				            </div>
+		                </div>
+		                <div class="clearfix"> </div>  
+		            </div>
+		            <div class="single-page-icons social-icons"> 
+		                <ul>
+		                    <li><h4>Share on</h4></li>
+		                    <li><a th:href="@{https://www.facebook.com/}" class="fa fa-facebook-square icon facebook"> </a></li>
+		                    <li><a th:href="@{https://twitter.com/}" class="fa fa-twitter-square icon twitter"> </a></li>
+		                    <li><a th:href="@{http://google.com/}" class="fa fa-google-plus-square icon googleplus"> </a></li>
+		                </ul>
+		            </div>
+		            <!-- Thông tin và Đánh giá -->
+		            <div class="single-product-everything">
+		                 <!-- thông tin-->
+		                <div class="single-extra-div">
+		                    <a data-toggle="collapse" class="pointer main" aria-expanded="true" data-target="#productDescriptionCollapse" aria-controls="#productDescriptionCollapse">
+		                        <span class="pull-left title-sidebar"><i class="fa fa-info-circle"></i> Thông tin sản phẩm</span>
+		                        <span class="pull-right"><i class="fa fa-plus"></i></span>
+		                        <span class="pull-right"><i class="fa fa-minus"></i></span>
+		                        <div class="clearfix"></div>
+		                    </a>
+		                    <div id="productDescriptionCollapse" class="collapse in collapseDiv">
+		                        <p>[[${item.description}]]</p>
+		                    </div>
+		                </div> <!---->
+		                 <!-- đánh giá -->
+		                <div class="single-extra-div">
+		                    <a data-toggle="collapse" class="pointer main" aria-expanded="false" data-target="#productReviewCollapse" aria-controls="#productReviewCollapse">
+		                        <span class="pull-left title-sidebar"> <i class="fa fa-check-square-o"></i>
+		                            Bình luận
+		                        </span>
+		                        <span class="pull-right"><i class="fa fa-plus"></i></span>
+		                        <span class="pull-right"><i class="fa fa-minus"></i></span>
+		                        <div class="clearfix"></div>
+		                    </a>
+		                    <div id="productReviewCollapse" class="collapse collapseDiv">
+		                        <div class="fb-comments" th:data-href="@{|${#httpServletRequest.requestURL}|}" data-width="800" data-numposts="5"></div>
+		                    </div>
+		                </div> <!---->
+		            </div> <!---->
+		        </div>  <!--End Single Product Div Everything-->
+		    </div>
+</div>
+<script>
+    $(window).load(function() {
+      $('.flexslider').flexslider({
+        animation: "slide",
+        controlNav: "thumbnails"
+    });
+  });
+    
+    function Rating(param, idProduct) {
+    	var stars = param.value;
+    	$.ajax({
+    		url : '/productSingle/like/'+idProduct,
+    		method : 'GET',
+    		data : {
+    			stars : stars
+    		},
+    		success : function(data) {
+    			var views = document.getElementById("rate");
+    			if(data === "Cám ơn bạn đã đóng góp ý kiến!"){
+    				views.innerHTML = data;
+    			} else{
+    				alert(data);
+    			}
+    		},
+    		error : function(jqXHR, exception) {
+    			console.log('Error occured!!');
+    		}
+    	});
+    }
+</script>
+	</main>
+</body>
+</html>

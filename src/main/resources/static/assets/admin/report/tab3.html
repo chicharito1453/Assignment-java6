@@ -1,0 +1,18 @@
+<div style="height: 250px;">
+	<table class="table">
+	<thead class="tabpanel2">
+		<tr>
+			<td style="color: red;">NĂM</td>
+			<td style="color: red;">TỔNG SỐ LƯỢNG BÁN</td>
+			<td style="color: red;">TỔNG DOANH THU</td>
+		</tr>
+	</thead>
+	<tbody id="tblShare">
+		<tr ng-repeat ="item in years track by item.years">
+			<td>{{item.years}}</td>
+			<td>{{item.count}}</td>
+			<td>{{item.sum | number:0}} đ</td>
+		</tr>
+	</tbody>
+</table>
+</div>
